@@ -5,20 +5,19 @@ branches:
 language: node_js
 node_js:
   - 13
-
 services:
   - docker
-
-# Pre-testing installs
 install:
-  - echo "nothing needs to be installed"
-
-# Scripts to be run such as tests
-before_script:
-  - echo "setting up"
-
+  - cd udagram-frontend
+  - npm i
+  - cd ..
+  - cd udagram-users-api
+  - npm i
+  - cd ..
+  - cd udagram-feed-api
+  - npm i
+  - cd ..
 script:
-  - echo "setting up"
-
-after_success:
-  - echo "setting up"
+  - docker build -t frontend ./udagram-frontend
+  - docker build -t feed-api ./udagram-feed-api
+  - docker build -t users-api ./udagram-users-api
