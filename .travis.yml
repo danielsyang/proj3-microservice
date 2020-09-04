@@ -21,3 +21,8 @@ script:
   - docker build -t frontend ./udagram-frontend
   - docker build -t feed-api ./udagram-feed-api
   - docker build -t users-api ./udagram-users-api
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
